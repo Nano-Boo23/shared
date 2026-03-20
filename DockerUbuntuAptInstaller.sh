@@ -41,13 +41,21 @@ echo -e "${GRN}Hecho${NC}"
 echo -e "${GRN}[script gs] Actualizando apt${NC}"
 apt update -y
 
-echo -n "${GRN}[script gs] Instalando paquetes Docker...${NC}"
+echo -e -n "${GRN}[script gs] Instalando paquetes Docker...${NC}"
 apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+echo -e "${GRN}Hecho${NC}"
+
+echo -e -n "${GRN}[script gs] Descargando fichero yml para proyecto 3...${NC}"
+curl -o docker-compose.yml https://raw.githubusercontent.com/Nano-Boo23/shared/main/projecte3_compose.yml
+chmod +x docker-compose.yml
 echo -e "${GRN}Hecho${NC}"
 
 echo -e "${GRN}"
 echo "[script gs] Script finalizado! Comprueba el estado de Docker con:"
 echo "    sudo systemctl status docker"
 echo "    sudo docker run hello-world"
+echo "[script gs] Y ejecuta la linea siguiente para iniciar todos los contenedores:"
+echo "    sudo docker compose up"
 echo -e "${NC}"
+
 exit 0
