@@ -1,0 +1,11 @@
+services:
+  proxy:
+    image: gserraa/main:proxy
+    ports:
+      - "8080:80"
+
+  web1:
+    image: gserraa/main:web1
+
+  web2:
+    image: gserraa/main:web2
