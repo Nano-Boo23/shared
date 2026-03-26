@@ -18,17 +18,19 @@ echo -e "${GRN}[script gs] Quitando version Docker antigua si existe...${NC}"
 apt remove -y $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc podman-docker containerd runc | cut -f1)
 echo -e "${GRN}Hecho${NC}"
 
-echo -n -e "${GRN}[script gs] Instalando paquetes necesarios...${NC}"
+echo -e "${GRN}[script gs] Instalando paquetes necesarios...${NC}"
 apt install -y ca-certificates curl
 echo -e "${GRN}Hecho${NC}"
 
-echo -n -e "${GRN}[script gs] Obteniendo GPG de Docker...${NC}"
+echo
+echo -e "${GRN}[script gs] Obteniendo GPG de Docker...${NC}"
 install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 chmod a+r /etc/apt/keyrings/docker.asc
 echo -e "${GRN}Hecho${NC}"
 
-echo -n -e "${GRN}[script gs] Añadiendo Docker a recursos apt...${NC}"
+echo
+echo -e "${GRN}[script gs] Añadiendo Docker a recursos apt...${NC}"
 tee /etc/apt/sources.list.d/docker.sources <<EOF
 Types: deb
 URIs: https://download.docker.com/linux/ubuntu
@@ -38,17 +40,22 @@ Signed-By: /etc/apt/keyrings/docker.asc
 EOF
 echo -e "${GRN}Hecho${NC}"
 
+echo
 echo -e "${GRN}[script gs] Actualizando apt${NC}"
 apt update -y
 
-echo -e -n "${GRN}[script gs] Instalando paquetes Docker...${NC}"
+
+echo
+echo -e "${GRN}[script gs] Instalando paquetes Docker...${NC}"
 apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 echo -e "${GRN}Hecho${NC}"
 
-echo -e -n "${GRN}[script gs] Descargando fichero yml para proyecto 3...${NC}"
+echo
+echo -e "${GRN}[script gs] Descargando fichero yml para proyecto 3...${NC}"
 curl -o docker-compose.yml https://raw.githubusercontent.com/Nano-Boo23/shared/main/projecte3_compose.yml
 chmod +x docker-compose.yml
 echo -e "${GRN}Hecho${NC}"
+
 
 echo -e "${GRN}"
 echo "[script gs] Script finalizado! Comprueba el estado de Docker con:"
