@@ -31,3 +31,10 @@ services:
     volumes:
       #might change this later to push/get to/from github
       - db_data:/var/lib/postgresql/data
+
+  #test service
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8090:8080
