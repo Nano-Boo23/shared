@@ -9,3 +9,25 @@ services:
 
   web2:
     image: gserraa/main:web2
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+      POSTGRES_DB: db_proj3
+    volumes:
+      #might change this later to push/get to/from github
+      - db_data:/var/lib/postgresql/data
+
+  db_replica:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+      POSTGRES_DB: db_proj3
+    volumes:
+      #might change this later to push/get to/from github
+      - db_data:/var/lib/postgresql/data
