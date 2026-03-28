@@ -1,17 +1,24 @@
 services:
   proxy:
+    build: ./proxy
     image: gserraa/main:proxy
+    container_name: proxy
     ports:
-      - "8080:80"
+      - "80:80"
 
   web1:
+    build: ./app
     image: gserraa/main:web1
+    container_name: web1
 
   web2:
+    build: ./app
     image: gserraa/main:web2
+    container_name: web2
 
   db:
     image: postgres
+    container_name: db
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: user
