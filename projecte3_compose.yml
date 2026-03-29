@@ -36,3 +36,4 @@ services:
 
 volumes:
   db_data:
+    name: global_db_volume
