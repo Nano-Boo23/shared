@@ -8,7 +8,7 @@ echo -e "${GRN}[script gs] Empezando script${NC}"
 if [[ $EUID -ne 0 ]]; then
    echo -e "${RED}Este script debe de ser ejecutado con sudo!${NC}"
    exit 1
-elif [ $(cat /etc/os-release | grep -o "Ubuntu") != "Ubuntu)" ]; then
+elif ! grep -q "Ubuntu" /etc/os-release; then
    echo "$ID"
    echo -e "${RED}Este sistema no es Ubuntu! El script está preparado solo para Ubuntu.${NC}"
    exit 1
