@@ -17,8 +17,9 @@ services:
     container_name: web2
 
   db:
-    image: postgres
+    image: postgres:15
     build: ./db
+    image: gserraa/main:db
     container_name: db
     environment:
       POSTGRES_USER: user
