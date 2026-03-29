@@ -18,17 +18,17 @@ services:
 
   db:
     image: postgres
+    build: ./db
     container_name: db
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: user
       POSTGRES_DB: db_proj3
     volumes:
-      #might change this later to push/get to/from github
-      #- db_data:/var/lib/postgresql/data
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db_data:/var/lib/postgresql/data
+      - ./db:/docker-entrypoint-initdb.d/
 
-  #test service
+  #database tester service
   adminer:
     image: adminer
     ports:
