@@ -63,6 +63,7 @@ echo "    sudo systemctl status docker"
 echo "    sudo docker run hello-world"
 echo "[script gs] Y ejecuta la linea siguiente para iniciar todos los contenedores:"
 echo "    sudo docker compose up"
+echo "[script gs] Si quieres utilizar docker build y necesitas los ficheros correspondientes, descargalos aqui: https://github.com/Nano-Boo23/shared/tree/main/docker_build_scripts"
 echo -e "${NC}"
 
 exit 0
