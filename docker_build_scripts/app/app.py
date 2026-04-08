@@ -46,19 +46,25 @@ def index():
         vote = request.form['vote']
         conn = get_db_connection()
         cur = conn.cursor()
-        # Inserció directa; pero substitueix valor nou si hi
-        # ha un conflicte de primary keys (el votant ha
-        # canviat el seu vot)
-        cur.execute("""
-            INSERT INTO votos (id, voto)
-            VALUES (%s, %s)
-            ON CONFLICT (id)
-            DO UPDATE SET
-                voto = EXCLUDED.voto;""",
-            (voter_id, vote)
-        )
-        conn.commit()
-        cur.close()
+
+        if vote == "custom":
+            vote = request.form.get('custom_vote', '').strip()
+
+
+        if vote:
+            # Inserció directa; pero substitueix valor nou si hi
+            # ha un conflicte de primary keys (el votant ha
+            # canviat el seu vot)
+            cur.execute("""
+                INSERT INTO votos (id, voto)
+                VALUES (%s, %s)
+                ON CONFLICT (id)
+                DO UPDATE SET
+                    voto = EXCLUDED.voto;""",
+                (voter_id, vote)
+            )
+            conn.commit()
+            cur.close()
 
     data = get_data()
 
