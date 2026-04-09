@@ -1,17 +1,15 @@
 FROM python:3.11
-
-# Directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar dependencias
+#app dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar el resto del código
+#copy other files (like templates/)
 COPY . .
 
-# Exponer puerto de Flask
+#expose flask port
 EXPOSE 5000
 
-# Comando de arranque
+#python app startup
 CMD ["python", "app.py"]
