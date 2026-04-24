@@ -16,16 +16,26 @@ services:
     image: gserraa/main:web2
     container_name: web2
 
-  db:
-    build: ./db
-    image: gserraa/main:db
-    container_name: db
+  db-primaria:
+    build: ./db-primaria
+    image: gserraa/main:db-primaria
+    container_name: db-primaria
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: user
       POSTGRES_DB: db_proj3
     volumes:
       - db_data:/var/lib/postgresql/data
+
+  db-replica:
+    build: ./db-replica
+    image: gserraa/main:db-replica
+    container_name: db-replica
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+    depends_on:
+      - db-primaria
 
   #database tester service
   adminer:
