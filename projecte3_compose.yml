@@ -5,6 +5,9 @@ services:
     container_name: proxy
     ports:
       - "80:80"
+    depends_on:
+      - web1
+
 
   web1:
     build: ./app
